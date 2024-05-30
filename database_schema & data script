@@ -1,0 +1,386 @@
+USE [falcon2]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Addresses]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Addresses](
+	[AddressId] [int] IDENTITY(1,1) NOT NULL,
+	[StreetLine] [nvarchar](max) NOT NULL,
+	[City] [nvarchar](max) NOT NULL,
+	[State] [nvarchar](max) NOT NULL,
+	[CountryId] [int] NOT NULL,
+	[ZipCode] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Addresses] PRIMARY KEY CLUSTERED 
+(
+	[AddressId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Countries]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Countries](
+	[CountryId] [int] IDENTITY(1,1) NOT NULL,
+	[CountryName] [nvarchar](max) NOT NULL,
+	[CountryCode] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Countries] PRIMARY KEY CLUSTERED 
+(
+	[CountryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](max) NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[FirstName] [nvarchar](max) NOT NULL,
+	[LastName] [nvarchar](max) NOT NULL,
+	[DateOfBirth] [datetime2](7) NOT NULL,
+	[PhoneNumber] [nvarchar](max) NOT NULL,
+	[AddressId] [int] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WeatherEvents]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WeatherEvents](
+	[WeatherEventId] [int] IDENTITY(1,1) NOT NULL,
+	[WeatherEventName] [nvarchar](max) NULL,
+	[Description] [nvarchar](max) NULL,
+	[CountryId] [int] NULL,
+	[WeatherTypeId] [int] NULL,
+	[Location] [nvarchar](max) NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[EndDate] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_WeatherEvents] PRIMARY KEY CLUSTERED 
+(
+	[WeatherEventId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[WeatherType]    Script Date: 5/28/2024 11:53:18 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[WeatherType](
+	[WeatherTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[WeatherTypeCode] [nvarchar](max) NULL,
+	[WeatherTypeName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_WeatherType] PRIMARY KEY CLUSTERED 
+(
+	[WeatherTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240526074825_Initial', N'8.0.1')
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240527005743_Initial1', N'8.0.1')
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20240527055944_Initial2', N'8.0.1')
+GO
+SET IDENTITY_INSERT [dbo].[Countries] ON 
+
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (1, N'Afghanistan', N'AFG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (2, N'Albania', N'ALB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (3, N'Algeria', N'DZA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (4, N'Andorra', N'AND')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (5, N'Angola', N'AGO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (6, N'Antigua and Barbuda', N'ATG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (7, N'Argentina', N'ARG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (8, N'Armenia', N'ARM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (9, N'Australia', N'AUS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (10, N'Austria', N'AUT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (11, N'Azerbaijan', N'AZE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (12, N'Bahamas', N'BHS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (13, N'Bahrain', N'BHR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (14, N'Bangladesh', N'BGD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (15, N'Barbados', N'BRB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (16, N'Belarus', N'BLR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (17, N'Belgium', N'BEL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (18, N'Belize', N'BLZ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (19, N'Benin', N'BEN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (20, N'Bhutan', N'BTN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (21, N'Bolivia', N'BOL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (22, N'Bosnia and Herzegovina', N'BIH')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (23, N'Botswana', N'BWA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (24, N'Brazil', N'BRA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (25, N'Brunei', N'BRN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (26, N'Bulgaria', N'BGR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (27, N'Burkina Faso', N'BFA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (28, N'Burundi', N'BDI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (29, N'Cabo Verde', N'CPV')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (30, N'Cambodia', N'KHM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (31, N'Cameroon', N'CMR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (32, N'Canada', N'CAN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (33, N'Central African Republic', N'CAF')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (34, N'Chad', N'TCD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (35, N'Chile', N'CHL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (36, N'China', N'CHN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (37, N'Colombia', N'COL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (38, N'Comoros', N'COM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (39, N'Congo, Democratic Republic of the', N'COD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (40, N'Congo, Republic of the', N'COG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (41, N'Costa Rica', N'CRI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (42, N'Croatia', N'HRV')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (43, N'Cuba', N'CUB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (44, N'Cyprus', N'CYP')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (45, N'Czech Republic', N'CZE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (46, N'Denmark', N'DNK')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (47, N'Djibouti', N'DJI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (48, N'Dominica', N'DMA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (49, N'Dominican Republic', N'DOM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (50, N'Ecuador', N'ECU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (51, N'Egypt', N'EGY')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (52, N'El Salvador', N'SLV')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (53, N'Equatorial Guinea', N'GNQ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (54, N'Eritrea', N'ERI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (55, N'Estonia', N'EST')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (56, N'Eswatini', N'SWZ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (57, N'Ethiopia', N'ETH')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (58, N'Fiji', N'FJI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (59, N'Finland', N'FIN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (60, N'France', N'FRA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (61, N'Gabon', N'GAB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (62, N'Gambia', N'GMB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (63, N'Georgia', N'GEO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (64, N'Germany', N'DEU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (65, N'Ghana', N'GHA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (66, N'Greece', N'GRC')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (67, N'Grenada', N'GRD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (68, N'Guatemala', N'GTM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (69, N'Guinea', N'GIN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (70, N'Guinea-Bissau', N'GNB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (71, N'Guyana', N'GUY')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (72, N'Haiti', N'HTI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (73, N'Honduras', N'HND')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (74, N'Hungary', N'HUN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (75, N'Iceland', N'ISL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (76, N'India', N'IND')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (77, N'Indonesia', N'IDN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (78, N'Iran', N'IRN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (79, N'Iraq', N'IRQ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (80, N'Ireland', N'IRL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (81, N'Israel', N'ISR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (82, N'Italy', N'ITA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (83, N'Jamaica', N'JAM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (84, N'Japan', N'JPN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (85, N'Jordan', N'JOR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (86, N'Kazakhstan', N'KAZ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (87, N'Kenya', N'KEN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (88, N'Kiribati', N'KIR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (89, N'Korea, North', N'PRK')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (90, N'Korea, South', N'KOR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (91, N'Kosovo', N'XKX')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (92, N'Kuwait', N'KWT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (93, N'Kyrgyzstan', N'KGZ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (94, N'Laos', N'LAO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (95, N'Latvia', N'LVA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (96, N'Lebanon', N'LBN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (97, N'Lesotho', N'LSO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (98, N'Liberia', N'LBR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (99, N'Libya', N'LBY')
+GO
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (100, N'Liechtenstein', N'LIE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (101, N'Lithuania', N'LTU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (102, N'Luxembourg', N'LUX')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (103, N'Madagascar', N'MDG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (104, N'Malawi', N'MWI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (105, N'Malaysia', N'MYS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (106, N'Maldives', N'MDV')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (107, N'Mali', N'MLI')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (108, N'Malta', N'MLT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (109, N'Marshall Islands', N'MHL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (110, N'Mauritania', N'MRT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (111, N'Mauritius', N'MUS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (112, N'Mexico', N'MEX')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (113, N'Micronesia', N'FSM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (114, N'Moldova', N'MDA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (115, N'Monaco', N'MCO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (116, N'Mongolia', N'MNG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (117, N'Montenegro', N'MNE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (118, N'Morocco', N'MAR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (119, N'Mozambique', N'MOZ')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (120, N'Myanmar', N'MMR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (121, N'Namibia', N'NAM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (122, N'Nauru', N'NRU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (123, N'Nepal', N'NPL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (124, N'Netherlands', N'NLD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (125, N'New Zealand', N'NZL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (126, N'Nicaragua', N'NIC')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (127, N'Niger', N'NER')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (128, N'Nigeria', N'NGA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (129, N'North Macedonia', N'MKD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (130, N'Norway', N'NOR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (131, N'Oman', N'OMN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (132, N'Pakistan', N'PAK')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (133, N'Palau', N'PLW')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (134, N'Panama', N'PAN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (135, N'Papua New Guinea', N'PNG')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (136, N'Paraguay', N'PRY')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (137, N'Peru', N'PER')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (138, N'Philippines', N'PHL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (139, N'Poland', N'POL')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (140, N'Portugal', N'PRT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (141, N'Qatar', N'QAT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (142, N'Romania', N'ROU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (143, N'Russia', N'RUS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (144, N'Rwanda', N'RWA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (145, N'Saint Kitts and Nevis', N'KNA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (146, N'Saint Lucia', N'LCA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (147, N'Saint Vincent and the Grenadines', N'VCT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (148, N'Samoa', N'WSM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (149, N'San Marino', N'SMR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (150, N'Sao Tome and Principe', N'STP')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (151, N'Saudi Arabia', N'SAU')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (152, N'Senegal', N'SEN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (153, N'Serbia', N'SRB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (154, N'Seychelles', N'SYC')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (155, N'Sierra Leone', N'SLE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (156, N'Singapore', N'SGP')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (157, N'Slovakia', N'SVK')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (158, N'Slovenia', N'SVN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (159, N'Solomon Islands', N'SLB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (160, N'Somalia', N'SOM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (161, N'South Africa', N'ZAF')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (162, N'South Sudan', N'SSD')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (163, N'Spain', N'ESP')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (164, N'Sri Lanka', N'LKA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (165, N'Sudan', N'SDN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (166, N'Suriname', N'SUR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (167, N'Sweden', N'SWE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (168, N'Switzerland', N'CHE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (169, N'Syria', N'SYR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (170, N'Taiwan', N'TWN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (171, N'Tajikistan', N'TJK')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (172, N'Tanzania', N'TZA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (173, N'Thailand', N'THA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (174, N'Timor-Leste', N'TLS')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (175, N'Togo', N'TGO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (176, N'Tonga', N'TON')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (177, N'Trinidad and Tobago', N'TTO')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (178, N'Tunisia', N'TUN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (179, N'Turkey', N'TUR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (180, N'Turkmenistan', N'TKM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (181, N'Tuvalu', N'TUV')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (182, N'Uganda', N'UGA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (183, N'Ukraine', N'UKR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (184, N'United Arab Emirates', N'ARE')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (185, N'United Kingdom', N'GBR')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (186, N'United States', N'USA')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (187, N'Uruguay', N'URY')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (188, N'Uzbekistan', N'UZB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (189, N'Vanuatu', N'VUT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (190, N'Vatican City', N'VAT')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (191, N'Venezuela', N'VEN')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (192, N'Vietnam', N'VNM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (193, N'Yemen', N'YEM')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (194, N'Zambia', N'ZMB')
+INSERT [dbo].[Countries] ([CountryId], [CountryName], [CountryCode]) VALUES (195, N'Zimbabwe', N'ZWE')
+SET IDENTITY_INSERT [dbo].[Countries] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WeatherEvents] ON 
+
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (1, N'North to South East', N'North to Shouth East', 186, 1, N'north', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-28T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (2, N'West to  East', N'West to  East', 186, 1, N'midwest', CAST(N'2024-05-30T00:00:00.0000000' AS DateTime2), CAST(N'2024-06-28T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (3, N'North to South', N'North toSouth', 180, 2, N'north', CAST(N'2020-05-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-02T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (4, N'North to South', N'East to West', 180, 2, N'northeast', CAST(N'2020-04-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-04-07T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (5, N'DownSouth', N'DownSouth', 170, 4, N'DownSouth', CAST(N'2020-04-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-04-07T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (6, N'North slope', N'North slope', 100, 2, N'North slope', CAST(N'2020-06-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-06-07T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (9, N'Louisville upper side', N'upper side', 50, 3, N'Louisville', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-29T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (10, N'Louisville down side', N'down side', 46, 1, N'Jefferson', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-29T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (11, N'Shellby storm', N'Shellby', 46, 1, N'Jefferson', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-29T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (12, N'Shellby storm', N'Shellby', 70, 1, N'Jefferson', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-29T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (13, N'North to South', N'North toSouth', 120, 2, N'north', CAST(N'2020-05-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-02T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (14, N'West to  East', N'West to  East', 2, 1, N'midwest', CAST(N'2024-05-30T00:00:00.0000000' AS DateTime2), CAST(N'2024-06-28T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (15, N'Louisville upper side', N'upper side', 60, 3, N'Louisville', CAST(N'2024-05-27T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-29T00:00:00.0000000' AS DateTime2))
+INSERT [dbo].[WeatherEvents] ([WeatherEventId], [WeatherEventName], [Description], [CountryId], [WeatherTypeId], [Location], [StartDate], [EndDate]) VALUES (16, N'North to South', N'North toSouth', 30, 2, N'north', CAST(N'2020-05-01T00:00:00.0000000' AS DateTime2), CAST(N'2024-05-02T00:00:00.0000000' AS DateTime2))
+SET IDENTITY_INSERT [dbo].[WeatherEvents] OFF
+GO
+SET IDENTITY_INSERT [dbo].[WeatherType] ON 
+
+INSERT [dbo].[WeatherType] ([WeatherTypeId], [WeatherTypeCode], [WeatherTypeName]) VALUES (1, N'001', N'Storm')
+INSERT [dbo].[WeatherType] ([WeatherTypeId], [WeatherTypeCode], [WeatherTypeName]) VALUES (2, N'002', N'Winter Storm')
+INSERT [dbo].[WeatherType] ([WeatherTypeId], [WeatherTypeCode], [WeatherTypeName]) VALUES (3, N'003', N'Thunderstorms')
+INSERT [dbo].[WeatherType] ([WeatherTypeId], [WeatherTypeCode], [WeatherTypeName]) VALUES (4, N'004', N'Tornadoes')
+INSERT [dbo].[WeatherType] ([WeatherTypeId], [WeatherTypeCode], [WeatherTypeName]) VALUES (5, N'005', N'Hail')
+SET IDENTITY_INSERT [dbo].[WeatherType] OFF
+GO
+/****** Object:  Index [IX_Addresses_CountryId]    Script Date: 5/28/2024 11:53:18 AM ******/
+CREATE NONCLUSTERED INDEX [IX_Addresses_CountryId] ON [dbo].[Addresses]
+(
+	[CountryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Users_AddressId]    Script Date: 5/28/2024 11:53:18 AM ******/
+CREATE NONCLUSTERED INDEX [IX_Users_AddressId] ON [dbo].[Users]
+(
+	[AddressId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_WeatherEvents_CountryId]    Script Date: 5/28/2024 11:53:18 AM ******/
+CREATE NONCLUSTERED INDEX [IX_WeatherEvents_CountryId] ON [dbo].[WeatherEvents]
+(
+	[CountryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_WeatherEvents_WeatherTypeId]    Script Date: 5/28/2024 11:53:18 AM ******/
+CREATE NONCLUSTERED INDEX [IX_WeatherEvents_WeatherTypeId] ON [dbo].[WeatherEvents]
+(
+	[WeatherTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Addresses]  WITH CHECK ADD  CONSTRAINT [FK_Addresses_Countries_CountryId] FOREIGN KEY([CountryId])
+REFERENCES [dbo].[Countries] ([CountryId])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Addresses] CHECK CONSTRAINT [FK_Addresses_Countries_CountryId]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Addresses_AddressId] FOREIGN KEY([AddressId])
+REFERENCES [dbo].[Addresses] ([AddressId])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Addresses_AddressId]
+GO
+ALTER TABLE [dbo].[WeatherEvents]  WITH CHECK ADD  CONSTRAINT [FK_WeatherEvents_Countries_CountryId] FOREIGN KEY([CountryId])
+REFERENCES [dbo].[Countries] ([CountryId])
+GO
+ALTER TABLE [dbo].[WeatherEvents] CHECK CONSTRAINT [FK_WeatherEvents_Countries_CountryId]
+GO
+ALTER TABLE [dbo].[WeatherEvents]  WITH CHECK ADD  CONSTRAINT [FK_WeatherEvents_WeatherType_WeatherTypeId] FOREIGN KEY([WeatherTypeId])
+REFERENCES [dbo].[WeatherType] ([WeatherTypeId])
+GO
+ALTER TABLE [dbo].[WeatherEvents] CHECK CONSTRAINT [FK_WeatherEvents_WeatherType_WeatherTypeId]
+GO
+USE [master]
+GO
+ALTER DATABASE [falcon2] SET  READ_WRITE 
+GO
